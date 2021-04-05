@@ -1,7 +1,7 @@
 ---
 title: "simpleRegress"
-author: "put your name here"
-date: "Fall 2020"
+author: "Natalia Lekach"
+date: "April 5, 2021"
 output: html_document
 ---
 
@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 bears <- read.csv(file="BEARS.csv",header = TRUE)
+bears$SEX <-as.factor(bears$SEX)
 ```
 
 ## Model LENGTH ~ NECK  this is an example  
@@ -33,4 +34,41 @@ predict(simp,new)
 predict(simp,new,se.fit=TRUE)
 ```
 ## Surely there is another variable that can better predict LENGTH than NECK. Find one and compare its performance to that of neck by it value of Adjusted-Rsquared (bigger is better).
+
+```{r}
+AgeModel <- lm(LENGTH~AGE,data=bears)
+plot(LENGTH~AGE,data=bears)
+abline(AgeModel)
+summary.lm(AgeModel)
+```
+```{r}
+HeadLengthModel <- lm(LENGTH~HEADLEN,data=bears)
+plot(LENGTH~HEADLEN,data=bears)
+abline(HeadLengthModel)
+summary.lm(HeadLengthModel)
+```
+```{r}
+HeadWidthModel <- lm(LENGTH~HEADWTH,data=bears)
+plot(LENGTH~HEADWTH,data=bears)
+abline(HeadWidthModel)
+summary.lm(HeadWidthModel)
+```
+```{r}
+ChestModel <- lm(LENGTH~CHEST,data=bears)
+plot(LENGTH~CHEST,data=bears)
+abline(ChestModel)
+summary.lm(ChestModel)
+```
+```{r}
+WeightModel <- lm(LENGTH~WEIGHT,data=bears)
+plot(LENGTH~WEIGHT,data=bears)
+abline(WeightModel)
+summary.lm(WeightModel)
+```
+
+## Summary Statement
+
+We created six different models to predict length from other measurements and qualities of bears. The best model for predicting length used head length. This model has an adjusted R-squared of 0.8434, indicating that 84% of the error encountered by using the mean model is explained when using this model. The residual standard error for the head length model is 4.235.The spread of the errors over each point is lessened. 
+
+The next best model used chest length to predict. This model has a adjusted R-squared of 0.7869 and a residual standard error of 4.939. The adjusted R-squared is slightly lower and the residual standard error is slightly higher than the length model.
 
