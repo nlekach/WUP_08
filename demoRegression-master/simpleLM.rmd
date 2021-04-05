@@ -72,3 +72,5 @@ We created six different models to predict length from other measurements and qu
 
 The next best model used chest length to predict. This model has a adjusted R-squared of 0.7869 and a residual standard error of 4.939. The adjusted R-squared is slightly lower and the residual standard error is slightly higher than the length model.
 
+We also created models using age, headwidth, neck, chest and weight. 
+
